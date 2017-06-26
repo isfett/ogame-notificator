@@ -71,7 +71,7 @@ function start()
         function audioNotification()
         {
             var alertSound = new Audio('chrome-extension://'+chrome.runtime.id+'/alert.mp3');
-            alertSound.volume = options.soundVolume / 100;
+            alertSound.volume = parseInt(options.soundVolume) / 100;
             alertSound.play();
             setTimeout(function(){
                 alertSound.pause()
@@ -93,29 +93,32 @@ function start()
         /* Idle detection */
         var idleTime = 0;
         var tempIdleTime = 1000000;
-        var idleInterval = window.setInterval(timerIncrement, 1000 * options.checkIdleTimeSeconds);
+        var idleInterval = window.setInterval(timerIncrement, 1000 * parseInt(options.checkIdleTimeSeconds));
         function timerIncrement() {
             idleTime = idleTime + 1;
             if(options.randomIdleTime)
             {
                 if(idleTime === 1)
                 {
-                    tempIdleTime = Math.floor(Math.random() * (options.randomIdleTimeMax - options.randomIdleTimeMin+ 1)) + options.randomIdleTimeMin;
+                    console.log(options);
+                    console.log(options.randomIdleTimeMax);
+                    console.log(parseInt(options.randomIdleTimeMax));
+                    tempIdleTime = Math.floor(Math.random() * (parseInt(options.randomIdleTimeMax) - parseInt(options.randomIdleTimeMin)+ 1)) + parseInt(options.randomIdleTimeMin);
                 }
                 else
                 {
                     console.log(idleTime, tempIdleTime);
                     if(idleTime > tempIdleTime)
                     {
-                        window.location.reload();
+                        //window.location.reload();
                     }
                 }
             }
             else
             {
-                if(idleTime >= options.maxIdleTimeSeconds)
+                if(idleTime >= parseInt(options.maxIdleTimeSeconds))
                 {
-                    window.location.reload();
+                    //window.location.reload();
                 }
             }
         }
@@ -175,7 +178,7 @@ function start()
                                     }
                                 }
                             }
-                            notifyMe(options.title, text, {'coords' : coords, 'type': type});
+                            //notifyMe(options.title, text, {'coords' : coords, 'type': type});
                         }
                     }
                 }
