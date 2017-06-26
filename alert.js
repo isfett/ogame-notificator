@@ -100,17 +100,14 @@ function start()
             {
                 if(idleTime === 1)
                 {
-                    console.log(options);
-                    console.log(options.randomIdleTimeMax);
-                    console.log(parseInt(options.randomIdleTimeMax));
                     tempIdleTime = Math.floor(Math.random() * (parseInt(options.randomIdleTimeMax) - parseInt(options.randomIdleTimeMin)+ 1)) + parseInt(options.randomIdleTimeMin);
                 }
                 else
                 {
-                    console.log(idleTime, tempIdleTime);
+                    //console.log(idleTime, tempIdleTime);
                     if(idleTime > tempIdleTime)
                     {
-                        //window.location.reload();
+                        window.location.reload();
                     }
                 }
             }
@@ -118,7 +115,7 @@ function start()
             {
                 if(idleTime >= parseInt(options.maxIdleTimeSeconds))
                 {
-                    //window.location.reload();
+                    window.location.reload();
                 }
             }
         }
@@ -178,7 +175,7 @@ function start()
                                     }
                                 }
                             }
-                            //notifyMe(options.title, text, {'coords' : coords, 'type': type});
+                            notifyMe(options.title, text, {'coords' : coords, 'type': type});
                         }
                     }
                 }
