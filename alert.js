@@ -148,10 +148,10 @@ function start()
                     for(var i = 0; i < events.length; i++)
                     {
                         var event = events[i];
-                        var missionType = event.dataset.missionType;
-                        if(missionType == 1 || missionType == 6)
+                        var missionType = parseInt(event.dataset.missionType);
+                        if(missionType === 1 || missionType === 6)
                         {
-                            var text = missionType == 1 ? options.attackText : options.spioText;
+                            var text = missionType === 1 ? options.attackText : options.spioText;
                             var coords = '';
                             var type = options.planetText;
                             for(var j = 0; j < event.childNodes.length; j++)
