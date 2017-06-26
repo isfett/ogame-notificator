@@ -1,0 +1,37 @@
+{
+  "name": "Ogame Notificator",
+  "manifest_version": 2,
+  "description": "",
+  "version": "0.0.1",
+  "background": {
+    "page": "background.html"
+  },
+  "content_scripts": [
+    {
+      "matches":["https://*.ogame.gameforge.com/game/*"],
+      "css": ["alert.css"],
+      "js": ["alert.js"]
+    }
+  ],
+  "web_accessible_resources": [],
+  "permissions": [
+    "tabs",
+    "storage",
+    "notifications",
+    "https://maker.ifttt.com/*"
+  ],
+  "browser_action":  {
+    "default_icon": "default.png",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    // Required.
+    "page": "options.html",
+    // Recommended.
+    "chrome_style": true,
+    // Not recommended; only provided for backwards compatibility,
+    // and will be unsupported in a future version of Chrome (TBD).
+    "open_in_tab": true
+  },
+  "web_accessible_resources": ["alert.mp3","alert.png"]
+}

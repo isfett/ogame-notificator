@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ogame Notificator Options</title>
+    <style>
+        body { padding: 10px; }
+        code {color: red; background-color: lightgray; }
+    </style>
+</head>
+
+<body>
+<h1>Options</h1>
+
+Notification Title:
+<input type="input" id="title" />
+<br>
+
+Extension Active:
+<input type="checkbox" id="isActive" />
+<br>
+
+<hr>
+<h3>Translations</h3>
+<p style="font-size:10px;">You can use placeholders <code>{coords}</code> (e.g. [1:1:1]) and <code>{type}</code> (e.g text for planet/moon, see downside) in here.</p>
+
+Text for getting attacked:
+<input id="attackText" type="input" style="width: 300px; " />
+<br>
+
+Text for getting spied:
+<input id="spioText" type="input" style="width: 300px; "  />
+<br>
+
+Text for "planet":
+<input id="planetText" type="input" />
+<br>
+
+Text for "moon":
+<input id="moonText" type="input" />
+<br>
+
+<hr>
+<h3>Page reloads</h3>
+Page reloads by random seconds:
+<input type="checkbox" id="randomIdleTime" />
+<br>
+
+Minimum time for random page reloads (only affected if the checkbox above is checked):
+<input type="number" id="randomIdleTimeMin" />
+<br>
+
+Maximum time for random page reloads (only affected if the checkbox above is checked):
+<input type="number" id="randomIdleTimeMax" />
+<br>
+
+Idle time for non random page reloads (loads page all X Seconds if you dont have checked the checkbox above):
+<input type="number" id="maxIdleTimeSeconds" />
+<br>
+
+<hr>
+
+<h3>Notifications</h3>
+
+<h4>Sound</h4>
+
+Sound notifications active:
+<input type="checkbox" id="soundActive" />
+<br>
+
+Sound volume (0-100 percent):
+<input type="number" id="soundVolume" />
+<br>
+
+<h4>MakerWebhooks</h4>
+<p style="font-size:10px;">You can send yourself a notification or smartphone or send an Mail via IFTTT. You can find a tutorial here: <a href="https://dev.to/johnmunsch/hooking-your-javascript-app-to-ifttt">https://dev.to/johnmunsch/hooking-your-javascript-app-to-ifttt</a>. You have to follow these steps until point 12. After insert your maker Webhooks URL in the textfield below. It should look like <code>https://maker.ifttt.com/trigger/{event}/with/key/{yourkey}</code></p>
+MakerWebhooks notifications active:
+<input type="checkbox" id="makerWebhooksActive" />
+<br>
+
+MakerWebhooks URL (only if active):
+<input type="text" id="makerWebhooksUrl" style="width: 800px;" />
+<br>
+
+
+<div id="status"></div>
+<button id="save">Save</button>
+
+<script src="options.js"></script>
+</body>
+</html>
