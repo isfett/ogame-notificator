@@ -19,7 +19,7 @@ var defaultOptions = {
 
 chrome.storage.sync.get(defaultOptions, function(storageOptions) {
     options = storageOptions;
-    console.log('options', options);
+    //console.log('options', options);
     start();
 });
 
@@ -84,7 +84,7 @@ function start()
             xhr.open("GET",options.makerWebhooksUrl, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
-                    console.log(xhr.responseText);
+                    //console.log(xhr.responseText);
                 }
             };
             xhr.send();
@@ -137,7 +137,6 @@ function start()
         if(attackAlert.classList.contains('soon'))
         {
             // check if spio or attack
-            console.log('check spio or attack');
             var openEventList = document.getElementById('js_eventDetailsClosed');
             openEventList.click();
             window.setTimeout(function(){
@@ -148,6 +147,7 @@ function start()
                     for(var i = 0; i < events.length; i++)
                     {
                         var event = events[i];
+                        var notifyEnabled = true;
                         var missionType = parseInt(event.dataset.missionType);
                         if(missionType === 1 || missionType === 6)
                         {
@@ -157,6 +157,7 @@ function start()
                             for(var j = 0; j < event.childNodes.length; j++)
                             {
                                 var td = event.childNodes[j];
+                                //console.log('td '+j,td);
                                 if(td.classList)
                                 {
                                     if(td.classList.contains('destCoords'))
@@ -173,9 +174,26 @@ function start()
                                             type = options.moonText;
                                         }
                                     }
+                                    if(j === 13)
+                                    {
+                                        if(td.classList.contains('icon_movement_reserve'))
+                                        {
+                                            notifyEnabled = false;
+                                        }
+                                    }
+                                    if(j === 1)
+                                    {
+                                        if(td.classList.contains('hostile') === false)
+                                        {
+                                            notifyEnabled = false;
+                                        }
+                                    }
                                 }
                             }
-                            notifyMe(options.title, text, {'coords' : coords, 'type': type});
+                            if(notifyEnabled)
+                            {
+                                notifyMe(options.title, text, {'coords' : coords, 'type': type});
+                            }
                         }
                     }
                 }
